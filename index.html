@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GROVE - 그로브</title>
+    <link rel="stylesheet" href="css/projectA.css" />
+  </head>
+  <body>
+    <!-- 팝업 오버레이 -->
+    <div id="popupOverlay" class="popup-overlay">
+      <!-- 요청하신 HTML 구조 반영 (500x265) -->
+      <div class="popup">
+        <div class="popup-top-line"></div>
+        <p class="text">
+          이 프로젝트는
+          <span class="highlight-text">구직용 포트폴리오</span> 입니다.<br />
+          그로브 소프트 실서비스와 무관함을 알려드립니다.
+        </p>
+        <button onclick="togglePopup(false)">확인했습니다</button>
+      </div>
+    </div>
+    <!-- 메인 헤더 (상단 정적 헤더) -->
+    <header id="main-header" class="header header-main">
+      <div class="header-content">
+        <div class="logo-container">
+           <svg class="logo-svg" viewBox="0 0 160 30" xmlns="http://www.w3.org/2000/svg">
+                    <text x="0" y="24" class="logo-text" font-size="28">
+                        G R O V <tspan font-size="40" dy="-1">e</tspan>
+                    </text>
+                </svg>
+          
+        </div>
+        <button class="menu-button">
+          <span></span><span></span><span></span><span></span> <span></span
+          ><span></span><span></span><span></span> <span></span><span></span
+          ><span></span><span></span> <span></span><span></span><span></span
+          ><span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- 스티키 헤더 (스크롤 시 나타나는 헤더) -->
+    <header id="sticky-header" class="header header-sticky">
+      <div class="header-content">
+        <div class="logo-container">
+           <svg class="logo-svg" viewBox="0 0 160 30" xmlns="http://www.w3.org/2000/svg">
+                    <text x="0" y="24" class="logo-text" font-size="28">
+                        G R O V <tspan font-size="40" dy="-1">e</tspan>
+                    </text>
+                </svg>
+     
+        </div>
+        <button class="menu-button">
+          <span></span><span></span><span></span><span></span> <span></span
+          ><span></span><span></span><span></span> <span></span><span></span
+          ><span></span><span></span> <span></span><span></span><span></span
+          ><span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content (전체 화면) -->
+    <main class="main">  
+       <!-- 화면 반반 클릭 영역 -->
+            <div class="click-areas">
+                <div class="click-area click-left" onclick="changeSlide(-1)"></div>
+                <div class="click-area click-right" onclick="changeSlide(1)"></div>
+            </div>
+           <!-- 슬라이더 섹션 -->
+    <section class="slider-container">
+        <div class="slide active">
+            <div class="slide-content">
+                <h1 class="text-6xl md:text-8xl font-bold tracking-tighter">Digital Experience.</h1>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="slide-content">
+                <h1 class="text-6xl md:text-8xl font-bold tracking-tighter">Creative Strategy.</h1>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="slide-content">
+                <h1 class="text-6xl md:text-8xl font-bold tracking-tighter">Future Solution.</h1>
+            </div>
+        </div>
+    <div class="slide">
+        <div class="slide-content">
+            <h1 class="text-6xl md:text-8xl font-bold tracking-tighter">Innovation Partner.</h1>
+        </div>
+    </div>
+
+          <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <p>Scroll Down<br />to Explore</p>
+            <div class="scroll-line"></div>
+          </div>
+        </div>
+        <div class="carousel-dots">
+          <button class="dot active"></button>
+          <button class="dot"></button>
+          <button class="dot"></button>
+          <button class="dot"></button>
+        </div>
+      </section>
+
+      <!-- Section 1 - 그로브가 만드는 -->
+      <section class="content-section dark">
+        <div class="section-grid">
+          <div class="col-left">
+            <div class="border-vertical"></div>
+            <div class="content-text">
+              <h2>그로브가 만드는.<br />몰입이 성과가 되는 순간.</h2>
+              <div class="see-more-link">See more</div>
+            </div>
+          </div>
+          <div class="col-right">
+            <img
+              src="/project_images/Section1.png"
+              alt="Creative Online Service"
+              class="section-image"
+            />
+            <div class="brand-logo">
+              <img
+                src="/project_images/Section1-1.png"
+                alt="TONEWORK"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2 - Brand Showcase -->
+      <section class="content-section dark">
+        <div class="section-grid">
+          <div class="col-left">
+            <div class="border-vertical"></div>
+            <div class="brand-grid">
+              <div class="brand-item">
+                <img
+                  src="/project_images/Section2.png"
+                  alt="kobo"
+                />
+              </div>
+              <div class="brand-item">
+                <img
+                  src="/project_images/Section2-1.png"
+                  alt="taejae"
+                />
+              </div>
+              <div class="brand-item">
+                <img
+                  src="/project_images/Section2-2.png"
+                  alt="titleist"
+                />
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="col-right">
+            <div class="brand-item">
+                <img
+                  src="/project_images/Section2-3.png"
+                  alt="home ap counselor"
+                />
+              </div>
+            <img
+              src="/project_images/Section2-4.png"
+              alt="Hi-Tech"
+              class="section-image"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3 - About Tech -->
+      <section class="content-section light">
+        <div class="section-grid">
+          <div class="col-left">
+            <img
+              src="/project_images/Section3.png"
+              alt="tech"
+              class="section-image"
+            />
+          </div>
+          <div class="col-right">
+            <div class="border-vertical"></div>
+            <div class="content-text dark-text">
+              <h2>기술과 감성을 겸비한<br />완벽한 파트너를 원한다면</h2>
+              <p class="subtitle">
+                공감을 구조화하는 설계, 앞선 기술, 트렌디한 디자인까지.<br />일
+                좀 하는 전문가, 그로브 A to Z.
+              </p>
+              <div class="see-more-link dark-link">See more →</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4 - Services -->
+      <section class="content-section light">
+        <div class="section-grid">
+          <div class="col-left">
+            <div class="border-vertical"></div>
+            <div class="content-text dark-text">
+              <h2>구축부터 운영까지 한 번에<br />이게 바로 프로.</h2>
+              <div class="services-grid">
+                <div class="service-item">
+                  <h3>Web & Mobile Platform</h3>
+                  <ul>
+                    <li>웹 사이트 구축</li>
+                    <li>모바일 웹 · 앱 구축</li>
+                    <li>시스템 및 서비스 구축</li>
+                    <li>UI/UX 컨설팅</li>
+                  </ul>
+                  <div class="see-more-link dark-link">See more →</div>
+                </div>
+                <div class="service-item">
+                  <h3>E-Commerce Platform</h3>
+                  <ul>
+                    <li>커머스 UI/UX 디자인</li>
+                    <li>커머스 사이트 구축·운영</li>
+                    <li>글로벌 커머스 통합</li>
+                    <li>맞춤형 통합 커머스 솔루션 제공</li>
+                  </ul>
+                  <div class="see-more-link dark-link">See more →</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-right">
+            <div class="service-item full-height">
+              <h3>System Management</h3>
+              <ul>
+                <li>CS·유지보수 전담 대응팀 운영</li>
+                <li>시스템 통합 운영 관리 아웃소싱</li>
+                <li>ITSM 기반 요청·변경 관리</li>
+                <li>서비스 수준 협약(SLA)을 통한 수준 관리</li>
+              </ul>
+              <div class="see-more-link dark-link">See more →</div>
+              <img
+                src="/project_images/Section4.png"
+                alt="Maintenance"
+                class="service-image"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Marquee Section -->
+      <section class="marquee-section">
+        <div class="marquee">
+          <span
+            >Web & Mobile Platform · E-Commerce Platform · System Management ·
+            Web & Mobile Platform · E-Commerce Platform · System Management
+            ·</span
+          >
+        </div>
+      </section>
+
+      <!-- Portfolio Section -->
+      <section class="portfolio-section">
+        <div class="portfolio-grid">
+          <!-- Row 1 -->
+          <div class="portfolio-item">
+            <img
+              src="/project_images/portfolio-section.png"
+              alt="Korea BoardGames"
+            />
+            <h3>Korea BoardGames</h3>
+            <span class="category">e-Commerce</span>
+            <p class="client">Client: Koreaboardgames</p>
+          </div>
+          <div class="portfolio-item">
+            <img
+              src="/project_images/portfolio-section-1.png"
+              alt="Taejae University"
+            />
+            <h3>Taejae University</h3>
+            <span class="category">Website</span>
+            <p class="client">Client: Taejae University</p>
+          </div>
+          <div class="portfolio-item featured">
+            <img
+              src="/project_images/portfolio-section-2.jpg"
+              alt="KRAFTON"
+            />
+            <h3>KRAFTON</h3>
+            <span class="category">Website</span>
+            <p class="client">Client: KRAFTON</p>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="portfolio-item">
+            <img
+              src="/project_images/portfolio-section-3.png"
+              alt="Amore Counselor"
+            />
+            <h3>Amore Counselor</h3>
+            <span class="category">Website</span>
+            <p class="client">Client: Amorepacific</p>
+          </div>
+          <div class="portfolio-item">
+            <img
+              src="/project_images/portfolio-section-4.png"
+              alt="HYBE"
+            />
+            <h3>HYBE Corp.</h3>
+            <span class="category">Website</span>
+            <p class="client">Client: HYBE</p>
+          </div>
+          <div class="portfolio-item">
+            <img
+              src="/project_images/portfolio-section-5.png"
+              alt="TONEWORK"
+            />
+            <h3>TONEWORK</h3>
+            <span class="category">Website</span>
+            <p class="client">Client: Amorepacific</p>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="portfolio-item">
+            <img
+              src="/project_images/portfolio-section-6.png"
+              alt="Amore Stories"
+            />
+            <h3>Amore Stories</h3>
+            <span class="category">Website</span>
+            <p class="client">Client: Amorepacific</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final Section -->
+      <section class="content-section dark final-section">
+        <div class="section-grid">
+          <div class="col-left">
+            <div class="border-vertical"></div>
+            <div class="content-text">
+              <h2>그로브는 많은 것보다<br />더 나은 것을 만듭니다.</h2>
+              <div class="see-more-link">
+                See more<span class="dot-end">.</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-right">
+            <div class="border-horizontal"></div>
+            <div class="contact-info">
+              <p>12th floor, 46, Cheongpa-ro</p>
+              <p>Yongsan-gu, Seoul, Korea</p>
+              <p>04373</p>
+              <p>02-3482-2630</p>
+              <p>request@grovesoft.net</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>© grovesoft Co., Ltd. All Rights Reserved</p>
+      </footer>
+    </main>
+  </body>
+  <script>
+  /* 1. DOM 요소 선언 */
+        const mainHeader = document.getElementById('main-header');
+        const stickyHeader = document.getElementById('sticky-header');
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const popupOverlay = document.getElementById('popupOverlay');
+
+        /* 2. 팝업 함수 */
+        function togglePopup(show) {
+            if (popupOverlay) {
+                popupOverlay.style.display = show ? "flex" : "none";
+            }
+        }
+
+        /* 3. 슬라이더 로직 */
+        let currentSlide = 0;
+        const slideInterval = 7000; /* 7초 자동 슬라이드 */
+        let autoPlay;
+
+        function updateSlide(index) {
+            // 현재 슬라이드 비활성화
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            
+            // 새 인덱스 계산 (순환 처리)
+            if (index >= slides.length) currentSlide = 0;
+            else if (index < 0) currentSlide = slides.length - 1;
+            else currentSlide = index;
+            
+            // 새 슬라이드 활성화
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            clearInterval(autoPlay);
+            updateSlide(currentSlide + direction);
+            startAutoPlay();
+        }
+
+        function startAutoPlay() {
+            autoPlay = setInterval(() => {
+                updateSlide(currentSlide + 1);
+            }, slideInterval);
+        }
+
+        // 초기 시작
+        startAutoPlay();
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', (e) => {
+                e.stopPropagation(); // 반반 클릭 영역 이벤트와 충돌 방지
+                clearInterval(autoPlay);
+                updateSlide(index);
+                startAutoPlay();
+            });
+        });
+
+        /* 4. 통합 스크롤 이벤트 */
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+
+            if (scrollY > 150) {
+                if (stickyHeader) stickyHeader.classList.add('active');
+                if (mainHeader) {
+                    mainHeader.style.opacity = '0';
+                    mainHeader.style.pointerEvents = 'none';
+                }
+            } else {
+                if (stickyHeader) stickyHeader.classList.remove('active');
+                if (mainHeader) {
+                    mainHeader.style.opacity = '1';
+                    mainHeader.style.pointerEvents = 'auto';
+                }
+            }
+        });
+
+        // 초기 로드 시 체크
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.scrollY > 150) {
+                if (stickyHeader) stickyHeader.classList.add('active');
+                if (mainHeader) mainHeader.style.opacity = '0';
+            }
+        });
+  </script>
+
+  </script>
+</html>

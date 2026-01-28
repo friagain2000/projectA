@@ -1,0 +1,1121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #000;
+  --secondary-color: #fff;
+  --border-color: #505050;
+  --text-dark: #3d3d3d;
+  --text-light-gray: #7a7a7a;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR",
+    sans-serif;
+  /* --sticky-bg: rgba(255, 255, 255, 0.95); */
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  line-height: 1.6;
+}
+
+/* Header */
+/* 공통 헤더 스타일 */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 74px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 48px;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+/* 1. 메인 헤더 (최상단 고정) */
+.header-main {
+  position: fixed;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition:
+    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.6s ease;
+}
+
+/* 2. 스티키 헤더 (스크롤 시 등장) */
+.header-sticky {
+  position: fixed;
+  background-color: #ffffff;
+  /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); */
+  border-bottom: 1px solid rgb(36, 36, 36);
+  /* 초기 상태: 위로 숨김 */
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 스크롤 시 활성화 클래스 */
+.header-sticky.active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 로고 스타일링 */
+.logo-svg {
+  height: 28px;
+  width: auto;
+  fill: currentColor;
+}
+
+.logo-text {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: bold;
+  letter-spacing: 0.02em;
+}
+.header-main .logo-svg {
+  color: #ffffff;
+}
+.header-sticky .logo-svg {
+  color: #000000;
+}
+/* 스티키 헤더의 로고는 검은색으로 반전 */
+.header-sticky .logo {
+  filter: invert(1);
+}
+
+/* 메뉴 버튼 (4x4 그리드 점) */
+.menu-button {
+  width: 22px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.menu-button span {
+  width: 4px;
+  height: 4px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+/* 메인 헤더 내부의 점: 흰색 */
+.header-main .menu-button span {
+  background-color: #ffffff;
+}
+
+/* 스티키 헤더 내부의 점: 검정색 */
+.header-sticky .menu-button span {
+  background-color: #1a1a1a;
+}
+
+/* Main Content */
+main {
+  width: 100%;
+}
+/* 슬라이더 스타일 */
+.slider-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  background-size: cover;
+  background-position: center;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide-content h1 {
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.8s ease 0.5s;
+}
+
+.slide.active .slide-content h1 {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* 슬라이드별 배경 설정 */
+.slide:nth-child(1) {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2072");
+}
+.slide:nth-child(2) {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=2070");
+}
+.slide:nth-child(3) {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2015");
+}
+.slide:nth-child(4) {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url(/project_images/slideimage4.jpg);
+}
+/* 화면 분할 클릭 영역 추가 */
+.click-areas {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  z-index: 15; /* 텍스트보다는 위, 메뉴보다는 아래 */
+}
+
+.click-area {
+  flex: 1;
+  height: 100%;
+  cursor: pointer;
+}
+
+/* 마우스 호버 시 커서 모양 변화 피드백 (선택 사항) */
+.click-left {
+  cursor:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>'),
+    auto;
+}
+.click-right {
+  cursor:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>'),
+    auto;
+}
+
+/* 인디케이터 */
+.indicators {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+  z-index: 10;
+}
+
+.dot {
+  width: 40px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.dot::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  background: #fff;
+}
+
+.dot.active::after {
+  width: 100%;
+  transition: width 5s linear; /* 자동 재생 시간과 일치 */
+}
+
+.content {
+  height: 100vh;
+  background: white;
+  padding: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile Styles - Figma Design */
+.mobile-container {
+  width: 390px;
+  margin: 0 auto;
+  background: white;
+}
+
+.mobile-hero {
+  height: 780px;
+  background: #cfcfcf;
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-hero-text {
+  position: absolute;
+  left: 30px;
+  top: 349px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 49px;
+  font-weight: 700;
+  color: #f1f1f1;
+  line-height: 82px;
+}
+
+.mobile-bullets {
+  position: absolute;
+  bottom: 6.41%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 111px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+}
+
+.bullet {
+  width: 8px;
+  height: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  border-radius: 4px;
+}
+
+.bullet.active {
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  position: relative;
+  border: none;
+}
+
+.bullet.active::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 3px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.mobile-section-black {
+  background: black;
+  padding: 45px 20px;
+}
+
+.mobile-heading {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: white;
+  line-height: 35.7px;
+  letter-spacing: -1px;
+}
+
+.mobile-see-more {
+  font-family: "Poppins", sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+  color: white;
+  background: linear-gradient(
+    to top,
+    white 9.302%,
+    rgba(255, 255, 255, 0) 9.302%
+  );
+  line-height: 35.7px;
+  display: inline-block;
+  margin-top: 27px;
+}
+
+.mobile-project-card {
+  text-align: center;
+  padding: 40px 0;
+  border-left: 1px solid #505050;
+}
+
+.mobile-project-card:first-child {
+  border-left: none;
+}
+
+.mobile-project-image {
+  width: 150px;
+  height: 308px;
+  margin: 0 auto;
+}
+
+.mobile-project-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: white;
+  margin-top: 22px;
+}
+
+.mobile-project-category {
+  font-family: "Poppins", sans-serif;
+  font-size: 17px;
+  color: white;
+  margin-top: 10px;
+}
+
+.mobile-project-client {
+  font-family: "Poppins", sans-serif;
+  font-size: 17px;
+  color: white;
+  margin-top: 15px;
+}
+
+.mobile-tech-section {
+  padding: 40px 20px;
+  border-top: 1px solid black;
+}
+
+.mobile-tech-text {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: black;
+  line-height: 35.7px;
+  letter-spacing: -1px;
+  margin-top: 40px;
+}
+
+.mobile-tech-desc {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 17px;
+  font-weight: 350;
+  color: #3d3d3d;
+  line-height: 28.05px;
+  letter-spacing: -1px;
+  margin-top: 45px;
+}
+
+.mobile-arrow-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 35px;
+}
+
+.mobile-arrow-link span {
+  font-family: "DM Sans", sans-serif;
+  font-size: 17px;
+  color: black;
+}
+
+.mobile-service-section {
+  border-top: 1px solid black;
+  padding: 40px 20px;
+}
+
+.mobile-service-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: black;
+  margin-bottom: 30px;
+}
+
+.mobile-service-list {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 17px;
+  font-weight: 350;
+  color: #3d3d3d;
+  line-height: 34px;
+  letter-spacing: -1px;
+}
+
+.mobile-contact-section {
+  background: black;
+  border-top: 1px solid #505050;
+  padding: 30px 20px;
+}
+
+.mobile-contact-info {
+  font-family: "Poppins", sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: white;
+  line-height: 27.94px;
+}
+
+.mobile-footer {
+  background: black;
+  padding: 20px;
+  text-align: center;
+}
+
+.mobile-footer-text {
+  font-family: "Roboto", sans-serif;
+  font-size: 17px;
+  color: #7a7a7a;
+  line-height: 28.05px;
+}
+
+.mobile-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: white;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.mobile-logo {
+  width: 129.41px;
+  height: 44px;
+}
+
+.mobile-menu-grid {
+  width: 22px;
+  height: 22px;
+  display: grid;
+  grid-template-columns: repeat(4, 4px);
+  grid-template-rows: repeat(4, 4px);
+  gap: 2px;
+}
+
+.mobile-menu-grid span {
+  width: 4px;
+  height: 4px;
+  background: black;
+  border-radius: 2px;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 48px;
+}
+
+.hero-text {
+  position: absolute;
+  left: 545px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 830px;
+}
+
+.hero-text h1 {
+  font-size: 90px;
+  font-weight: bold;
+  color: #f1f1f1;
+  line-height: 122px;
+  letter-spacing: -1px;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.divider {
+  position: absolute;
+  left: 611px;
+  top: -61px;
+  width: 2px;
+  height: 130px;
+  border-right: 2px solid #d9d9d9;
+}
+
+.scroll-indicator {
+  position: absolute;
+  left: 70px;
+  bottom: 100px;
+  text-align: center;
+  color: white;
+}
+
+.scroll-line {
+  width: 2px;
+  height: 22px;
+  background-color: white;
+  margin: 11px auto;
+  display: block;
+}
+
+.scroll-indicator p {
+  font-size: 17px;
+  font-family: "DM Sans", sans-serif;
+  line-height: 25px;
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 14px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background-color: white;
+  border-color: white;
+}
+
+/* Content Sections */
+.content-section {
+  padding: 100px 0;
+  border-top: 1px solid var(--primary-color);
+}
+
+
+.content-section.dark {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.content-section.light {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.section-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  max-width: 100%;
+  height: auto;
+}
+
+.col-left,
+.col-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+  min-height: 400px;
+  
+}
+
+.col-left {
+  border-right: 1px solid var(--border-color);
+  
+}
+
+.border-vertical {
+  position: absolute;
+  left: -1px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: var(--border-color);
+}
+
+/* Content Text */
+.content-text h2 {
+  font-size: 47px;
+  font-weight: bold;
+  line-height: 55.93px;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.content-text.dark-text h2 {
+  color: var(--primary-color);
+}
+
+.subtitle {
+  font-size: 17px;
+  line-height: 28.05px;
+  color: var(--text-dark);
+  font-weight: 350;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  max-width: 400px;
+}
+
+.see-more-link {
+  font-size: 17px;
+  font-family: "DM Sans", sans-serif;
+  cursor: pointer;
+  border-bottom: 1px solid currentColor;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.see-more-link:hover {
+  opacity: 0.7;
+}
+
+.see-more-link.dark-link {
+  color: var(--primary-color);
+}
+
+.dot-end {
+  color: var(--primary-color);
+}
+
+/* Brand Grid */
+.brand-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 50px;
+  width: auto;
+}
+
+.brand-item {
+  width: 150px;
+  height: 310px;
+  overflow: hidden;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-item img {
+  width: 150px;
+  height: 310px;
+  object-fit: contain; /* 310px 높이 내에서 로고가 잘리지 않게 조정 */
+}
+
+/* Section Images */
+
+.section-image {
+  width: 80%;
+  height: auto;
+  max-width: 511px;
+  object-fit: cover;
+  padding-right: 30px;
+}
+.brand-logo {
+  height: 310px;
+  padding-left: 10%;
+}
+
+/* Services Grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.service-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.service-item h3 {
+  font-size: 22px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: var(--primary-color);
+}
+
+.service-item ul {
+  list-style: none;
+  margin-bottom: 30px;
+}
+
+.service-item li {
+  font-size: 17px;
+  line-height: 34px;
+  color: var(--text-dark);
+  letter-spacing: -1px;
+}
+
+.service-item.full-height {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.service-image {
+  width: 100%;
+  height: auto;
+  max-width: 320px;
+  object-fit: cover;
+}
+
+.border-horizontal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--primary-color);
+}
+
+/* Marquee Section */
+.marquee-section {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  overflow: hidden;
+  padding: 30px 0;
+  border-top: 1px solid var(--primary-color);
+  border-bottom: 1px solid var(--primary-color);
+}
+
+.marquee {
+  display: flex;
+  white-space: nowrap;
+  font-size: 50px;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  line-height: 60px;
+  animation: scroll-left 20s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee span {
+  display: inline-block;
+  padding-right: 20px;
+}
+
+/* Portfolio Section */
+.portfolio-section {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  padding: 100px 0;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--border-color);
+  border-left: 1px solid var(--border-color);
+}
+
+.portfolio-item {
+  position: relative;
+  aspect-ratio: 1;
+  border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  overflow: hidden;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--primary-color);
+  transition: all 0.3s ease;
+}
+
+.portfolio-item:hover {
+  background-color: #1a1a1a;
+}
+
+.portfolio-item img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.portfolio-item h3,
+.portfolio-item .category,
+.portfolio-item .client {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.portfolio-item h3 {
+  font-size: 22px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+.portfolio-item .category {
+  font-size: 17px;
+  font-family: "Poppins", sans-serif;
+  margin-top: 10px;
+  opacity: 0.8;
+}
+
+.portfolio-item .client {
+  font-size: 17px;
+  font-family: "Poppins", sans-serif;
+  margin-top: auto;
+  opacity: 0.6;
+}
+
+.portfolio-item.featured {
+  grid-column: 2 / 4;
+  grid-row: 2 / 3;
+  aspect-ratio: auto;
+  min-height: 400px;
+}
+
+/* Final Section */
+.final-section {
+  padding: 100px 0;
+}
+
+.contact-info {
+  padding: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.contact-info p {
+  font-size: 22px;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 15px;
+  color: var(--secondary-color);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--primary-color);
+  color: var(--text-light-gray);
+  padding: 30px 0;
+  text-align: left;
+  padding-left: 80px;
+  border-top: 1px solid var(--border-color);
+  font-family: "Roboto", sans-serif;
+  font-size: 17px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+  .section-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .col-left,
+  .col-right {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .portfolio-item.featured {
+    grid-column: 1 / -1;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-item.full-height {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    padding: 0 24px;
+  }
+
+  .hero-text {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+  }
+
+  .hero-text h1 {
+    font-size: 48px;
+    line-height: 60px;
+  }
+
+  .col-left,
+  .col-right {
+    padding: 0 24px;
+  }
+
+  .content-text h2 {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .marquee {
+    font-size: 32px;
+  }
+
+  .footer {
+    padding-left: 24px;
+  }
+}
+
+/* ===================================================================== */
+/* ===========================팝          업============================ */
+/* ===================================================================== */
+
+/* 팝업 오버레이 */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap");
+
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* 지정 규격 적용 (500x265) */
+.popup {
+  position: relative;
+  background: #111;
+  border: 1px solid #333;
+  color: white;
+  width: 500px;
+  height: 265px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 2. 상단 중앙 흰색 선 스타일 */
+.popup-top-line {
+  position: absolute;
+  top: 20px;
+  /* 위에서부터의 거리 */
+  left: 50%;
+  /* 중앙 정렬 시작 */
+  transform: translateX(-50%);
+  /* 정확한 중앙 맞춤 */
+  width: 160px;
+  /* 선의 길이 */
+  height: 2px;
+  /* 선의 두께 */
+  background-color: rgba(255, 255, 255, 0.675);
+  /* 선의 색상 */
+  border-radius: 1px;
+  /* 선 끝을 약간 둥글게 */
+}
+
+/* 텍스트 스타일 */
+.popup .text {
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: #ccc;
+  margin-bottom: 30px;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.popup .highlight-text {
+  font-weight: bold;
+  border-bottom: 2px solid #fff;
+  color: #fff;
+  padding-bottom: 1px;
+}
+
+/* 버튼 스타일 */
+.popup button {
+  width: 100%;
+  height: 50px;
+  background-color: #fff;
+  color: #000;
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.popup button:hover {
+  background-color: #ddd;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 스크롤 제어용 */
+.overflow-hidden {
+  overflow: hidden;
+}
