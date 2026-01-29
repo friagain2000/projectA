@@ -94,12 +94,15 @@ body {
   font-weight: bold;
   letter-spacing: 0.02em;
 }
+
 .header-main .logo-svg {
   color: #ffffff;
 }
+
 .header-sticky .logo-svg {
   color: #000000;
 }
+
 /* 스티키 헤더의 로고는 검은색으로 반전 */
 .header-sticky .logo {
   filter: invert(1);
@@ -125,6 +128,7 @@ body {
   border-radius: 50%;
   transition: background-color 0.3s ease;
 }
+
 /* 메인 헤더 내부의 점: 흰색 */
 .header-main .menu-button span {
   background-color: #ffffff;
@@ -139,6 +143,7 @@ body {
 main {
   width: 100%;
 }
+
 /* 슬라이더 스타일 */
 .slider-container {
   position: relative;
@@ -185,27 +190,32 @@ main {
     linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2072");
 }
+
 .slide:nth-child(2) {
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url("https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=2070");
 }
+
 .slide:nth-child(3) {
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url("https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2015");
 }
+
 .slide:nth-child(4) {
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url(/project_images/slideimage4.jpg);
 }
+
 /* 화면 분할 클릭 영역 추가 */
 .click-areas {
   position: absolute;
   inset: 0;
   display: flex;
-  z-index: 15; /* 텍스트보다는 위, 메뉴보다는 아래 */
+  z-index: 15;
+  /* 텍스트보다는 위, 메뉴보다는 아래 */
 }
 
 .click-area {
@@ -220,6 +230,7 @@ main {
     url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>'),
     auto;
 }
+
 .click-right {
   cursor:
     url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>'),
@@ -258,7 +269,8 @@ main {
 
 .dot.active::after {
   width: 100%;
-  transition: width 5s linear; /* 자동 재생 시간과 일치 */
+  transition: width 5s linear;
+  /* 자동 재생 시간과 일치 */
 }
 
 .content {
@@ -614,15 +626,22 @@ main {
 }
 
 /* Content Sections */
-.content-section {
-  padding: 100px 0;
+.content-section.dark1 {
+  padding: 0;
   border-top: 1px solid var(--primary-color);
+  background-color: var(--primary-color);
 }
 
-
-.content-section.dark {
+.content-section.dark2 {
   background-color: var(--primary-color);
   color: var(--secondary-color);
+}
+
+/* 공통 섹션 구조 */
+.content-section.dark1 .content-section.dark2 {
+  border-top: 1px solid var(--secondary-color);
+  overflow: hidden;
+  /* 넘침 방지 */
 }
 
 .content-section.light {
@@ -633,24 +652,142 @@ main {
 .section-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0;
-  max-width: 100%;
-  height: auto;
+  min-height: 500px;
 }
 
-.col-left,
-.col-right {
+.col-right1 {
   position: relative;
   display: flex;
   align-items: center;
   padding: 0 80px;
   min-height: 400px;
-  
 }
 
-.col-left {
-  border-right: 1px solid var(--border-color);
-  
+.col-right2 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 0 20px;
+  min-height: 400px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* 이미지 크기 최적화 및 그림자 효과 (Modern UI) */
+.col-right2 img {
+  /* max-width: 100%; */
+  /* height: auto; */
+  border-radius: 12px;
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.col-right3 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+  min-height: 400px;
+}
+
+.col-right4 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+  min-height: 400px;
+}
+
+.col-right5 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+  min-height: 400px;
+}
+
+.col-left1 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+  min-height: 400px;
+}
+
+/* 수직 구분선 설정 (길이 및 시작점 조절 버전) */
+.col-left1::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 15%;
+  /* 선의 시작 지점 (위에서 20% 내려옴) */
+  height: 70%;
+  /* 선의 전체 길이 (부모 높이의 60%만 차지) */
+  width: 1px;
+  background-color: var(--border-color);
+}
+
+.col-left2 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+  min-height: 400px;
+}
+
+.col-left2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 80px;
+  /* 패딩 값에 맞춰 시작 위치 조절 */
+  width: 70%;
+  /* 선의 길이를 여기서 원하는 만큼 조절 (예: 100px, 20% 등) */
+  height: 1px;
+  /* 선의 두께 */
+  background-color: #505050;
+}
+
+/* 오른쪽 선(Right) 조절 (필요한 경우 추가) */
+.col-left2::after {
+  content: "";
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 1px;
+  /* 선의 두께 */
+  height: 400px;
+  /* 선의 세로 길이 조절 */
+  background-color: #505050;
+}
+
+.col-left3 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+  min-height: 400px;
+}
+
+.col-left4 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+  min-height: 400px;
+  border-top: 1px solid #000;
+  border-right: 1px solid #000;
+}
+
+.col-left5 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+  min-height: 400px;
 }
 
 .border-vertical {
@@ -670,6 +807,7 @@ main {
   letter-spacing: -1px;
   margin-bottom: 30px;
   font-family: "Noto Sans KR", sans-serif;
+  color: #ddd;
 }
 
 .content-text.dark-text h2 {
@@ -694,6 +832,7 @@ main {
   transition: all 0.3s ease;
   display: inline-block;
   margin-top: 20px;
+  color: #ddd;
 }
 
 .see-more-link:hover {
@@ -701,7 +840,46 @@ main {
 }
 
 .see-more-link.dark-link {
-  color: var(--primary-color);
+  font-size: 17px;
+  font-family: "DM Sans", sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex; /* 화살표와 정렬을 위해 flex 유지 */
+  align-items: center;
+  margin-top: 20px;
+  color: var(--primary-color); /* 다크모드가 아닐 경우 대비 */
+  position: relative;
+  padding-bottom: 4px;
+  gap: 8px;
+}
+/* 보더선 길이 조정을 위한 가상 요소 */
+.see-more-link.dark::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80%; /* 이 수치를 조절하여 선의 길이를 결정하세요 (예: 50%, 100px 등) */
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+/* 화살표 요소 분리 및 애니메이션 설정 */
+.see-more-link.dark-link .arrow {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 부드러운 가감속 효과 */
+}
+/* 마우스 호버 시 화살표가 오른쪽으로 8px 이동 */
+.see-more-link.dark-link:hover .arrow {
+  transform: translateX(8px);
+}
+/* 호버 시 선 길이 변화 예시 (선택 사항) */
+.see-more-link:hover::after {
+  width: 100%;
+}
+
+/* 보너스: 텍스트 부분에도 살짝 효과 추가 */
+.see-more-link.dark-link:hover {
+  opacity: 0.8;
 }
 
 .dot-end {
@@ -711,9 +889,9 @@ main {
 /* Brand Grid */
 .brand-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 50px;
-  width: auto;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
 }
 
 .brand-item {
@@ -726,10 +904,31 @@ main {
   justify-content: center;
 }
 
+.brand-item1 {
+  height: 200px;
+}
+
+.brand-item2 {
+  height: 200px;
+}
+
+.brand-item3 {
+  height: 200px;
+  margin-right: -70px;
+}
+
+.brand-item4 .brand-item5 {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
 .brand-item img {
   width: 150px;
   height: 310px;
-  object-fit: contain; /* 310px 높이 내에서 로고가 잘리지 않게 조정 */
+  object-fit: contain;
+  /* 310px 높이 내에서 로고가 잘리지 않게 조정 */
 }
 
 /* Section Images */
@@ -741,9 +940,15 @@ main {
   object-fit: cover;
   padding-right: 30px;
 }
+.section-image2 {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
 .brand-logo {
   height: 310px;
-  padding-left: 10%;
+  width: auto;
 }
 
 /* Services Grid */
@@ -804,7 +1009,36 @@ main {
 }
 
 /* Marquee Section */
-.marquee-section {
+.marquee-section1 {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 70px 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee {
+  display: inline-block;
+  animation: scroll 30s linear infinite;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-section2 {
   background-color: var(--secondary-color);
   color: var(--primary-color);
   overflow: hidden;
@@ -813,7 +1047,7 @@ main {
   border-bottom: 1px solid var(--primary-color);
 }
 
-.marquee {
+.marquee2 {
   display: flex;
   white-space: nowrap;
   font-size: 50px;
