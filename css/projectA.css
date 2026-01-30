@@ -824,7 +824,7 @@ main {
   max-width: 400px;
 }
 
-.see-more-link {
+.see-more-link1 {
   font-size: 17px;
   font-family: "DM Sans", sans-serif;
   cursor: pointer;
@@ -835,7 +835,7 @@ main {
   color: #ddd;
 }
 
-.see-more-link:hover {
+.see-more-link1:hover {
   opacity: 0.7;
 }
 
@@ -849,11 +849,12 @@ main {
   margin-top: 20px;
   color: var(--primary-color); /* 다크모드가 아닐 경우 대비 */
   position: relative;
-  padding-bottom: 4px;
+  padding-bottom: 5px;
   gap: 8px;
+  width: fit-content; /* 콘텐츠 폭에 맞춤 */
 }
 /* 보더선 길이 조정을 위한 가상 요소 */
-.see-more-link.dark::after {
+.see-more-link.dark-link::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -873,8 +874,8 @@ main {
   transform: translateX(8px);
 }
 /* 호버 시 선 길이 변화 예시 (선택 사항) */
-.see-more-link:hover::after {
-  width: 100%;
+.see-more-link.dark-link:hover::after {
+  width: 140%;
 }
 
 /* 보너스: 텍스트 부분에도 살짝 효과 추가 */
@@ -955,7 +956,7 @@ main {
 .services-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  gap: 100px;
   margin-top: 40px;
 }
 
@@ -985,18 +986,18 @@ main {
 }
 
 .service-item.full-height {
-  grid-column: 1 / -1;
+  width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: flex-start;
-  gap: 40px;
+  grid-template-columns: 1.2fr 1fr; /* 텍스트 영역과 이미지 영역 분할 */
+  align-items: center;
+  gap: 60px;
 }
 
 .service-image {
-  width: 100%;
-  height: auto;
-  max-width: 320px;
-  object-fit: cover;
+         max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
 .border-horizontal {
