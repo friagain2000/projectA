@@ -365,9 +365,11 @@ main {
   font-size: 30px;
   font-weight: 500;
   color: white;
-  background: linear-gradient(to top,
-      white 9.302%,
-      rgba(255, 255, 255, 0) 9.302%);
+  background: linear-gradient(
+    to top,
+    white 9.302%,
+    rgba(255, 255, 255, 0) 9.302%
+  );
   line-height: 35.7px;
   display: inline-block;
   margin-top: 27px;
@@ -722,11 +724,14 @@ main {
   position: absolute;
   right: 0;
   top: 15%;
-  /* 선의 시작 지점 (위에서 20% 내려옴) */
   height: 70%;
-  /* 선의 전체 길이 (부모 높이의 60%만 차지) */
   width: 1px;
-  background-color: var(--border-color);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent
+  );
 }
 
 .col-left2 {
@@ -742,25 +747,30 @@ main {
   position: absolute;
   top: 0;
   left: 80px;
-  /* 패딩 값에 맞춰 시작 위치 조절 */
   width: 70%;
-  /* 선의 길이를 여기서 원하는 만큼 조절 (예: 100px, 20% 등) */
   height: 1px;
-  /* 선의 두께 */
-  background-color: #505050;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.3) 20%,
+    rgba(255, 255, 255, 0.5) 100%
+  );
 }
 
 /* 오른쪽 선(Right) 조절 (필요한 경우 추가) */
 .col-left2::after {
   content: "";
   position: absolute;
-  top: 50px;
+  top: 0;
   right: 0;
   width: 1px;
-  /* 선의 두께 */
-  height: 400px;
-  /* 선의 세로 길이 조절 */
-  background-color: #505050;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.5) 80%,
+    transparent 100%
+  );
 }
 
 .col-left3 {
@@ -806,6 +816,19 @@ main {
   width: 1px;
   background-color: var(--border-color);
 }
+.portfolio-section.border-vertical {
+  position: absolute;
+  left: -1px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent
+  );
+}
 
 /* Content Text */
 .content-text h2 {
@@ -816,7 +839,6 @@ main {
   margin-bottom: 30px;
   font-family: "Noto Sans KR", sans-serif;
   color: #ddd;
-
 }
 
 .content-text.dark-text h2 {
@@ -978,7 +1000,7 @@ main {
   grid-template-columns: 1fr 1fr;
   gap: 100px;
   margin-top: 40px;
-     text-align: left; /* 그리드 내부는 다시 왼쪽 정렬 */
+  text-align: left; /* 그리드 내부는 다시 왼쪽 정렬 */
 }
 
 .service-item {
@@ -1042,15 +1064,7 @@ main {
   text-transform: uppercase;
 }
 
-@keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
 
-  to {
-    transform: translateX(-50%);
-  }
-}
 
 .marquee-section2 {
   background-color: var(--secondary-color);
@@ -1104,27 +1118,31 @@ main {
 }
 
 .portfolio-item {
-display: flex;
-            flex-direction: column;
-            padding: 40px;
-            position: relative;
-            transition: var(--transition);
-            text-decoration: none;
-            color: inherit;
-            /* [중요] 기존 border-right 속성을 제거해야 선이 끊어집니다. */
-            border: none; 
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  position: relative;
+  transition: var(--transition);
+  text-decoration: none;
+  color: inherit;
+  /* [중요] 기존 border-right 속성을 제거해야 선이 끊어집니다. */
+  border: none;
 }
- /* [핵심] 우측 수직 보더 선: 위아래 40px씩 띄워서 끊기 */
-        .portfolio-item::after {
-            content: "";
-            position: absolute;
-            right: 0;
-            top: 40px;    /* 패딩만큼 띄움 */
-            bottom: 40px; /* 패딩만큼 띄움 */
-            width: 1px;
-            background-color: var(--border-color);
-        }
-
+/* [핵심] 우측 수직 보더 선: 위아래 40px씩 띄워서 끊기 */
+.portfolio-item::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 40px;
+  bottom: 40px;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent
+  );
+}
 
 /* 이미지 영역: 상단 배치 */
 .portfolio-img-box {
@@ -1223,18 +1241,16 @@ display: flex;
   /* 좌우 그룹 사이 간격 */
   width: 100%;
   align-items: flex-start;
-
 }
 
 /* 주소 그룹 */
 .contact-address {
   flex: 1;
-  
 }
 
 .contact-info2 {
   flex: 1;
-  margin-top: 100px
+  margin-top: 100px;
 }
 
 .contact-info p {
@@ -1255,75 +1271,6 @@ display: flex;
   font-family: "Roboto", sans-serif;
   font-size: 17px;
 }
-
-/* 반응형 디자인 */
-@media (max-width: 1024px) {
-  .section-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .col-left,
-  .col-right {
-    border-right: none;
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  .portfolio-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .portfolio-item.featured {
-    grid-column: 1 / -1;
-  }
-
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .service-item.full-height {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .header-content {
-    padding: 0 24px;
-  }
-
-  .hero-text {
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-  }
-
-  .hero-text h1 {
-    font-size: 48px;
-    line-height: 60px;
-  }
-
-  .col-left,
-  .col-right {
-    padding: 0 24px;
-  }
-
-  .content-text h2 {
-    font-size: 32px;
-    line-height: 40px;
-  }
-
-  .portfolio-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .marquee {
-    font-size: 32px;
-  }
-
-  .footer {
-    padding-left: 24px;
-  }
-}
-
 /* ===================================================================== */
 /* ===========================팝          업============================ */
 /* ===================================================================== */
@@ -1414,6 +1361,51 @@ display: flex;
 .popup button:hover {
   background-color: #ddd;
 }
+/* Up button */
+#upButton {
+  position: fixed;
+      bottom: 40px;
+      right: 40px;
+      width: 56px;
+      height: 56px;
+      /* 배경색을 약간 더 어둡게 조정하여 밝은 배경 대비 확보 */
+      background-color: rgba(0, 0, 0, 0.7); 
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      /* 그림자를 추가하여 모든 배경에서 입체감과 가독성 부여 */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      outline: none;
+}
+
+#upButton.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+#upButton:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+}
+
+#upButton svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 
 @keyframes fadeIn {
   from {
@@ -1431,3 +1423,71 @@ display: flex;
 .overflow-hidden {
   overflow: hidden;
 }
+/* 반응형 디자인 */
+  @media (max-width: 1024px) {
+            .section-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .col-left,
+            .col-right {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding: 40px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .portfolio-item.featured {
+                grid-column: 1 / -1;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-item.full-height {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 24px;
+            }
+
+            .hero-text {
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+            }
+
+            .hero-text h1 {
+                font-size: 48px;
+                line-height: 60px;
+            }
+
+            .col-left,
+            .col-right {
+                padding: 40px 24px;
+            }
+
+            .content-text h2 {
+                font-size: 32px;
+                line-height: 40px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .marquee {
+                font-size: 32px;
+            }
+
+            .footer {
+                padding-left: 24px;
+            }
+        }

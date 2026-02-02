@@ -384,95 +384,13 @@
     <footer class="footer">
       <p>© grovesoft Co., Ltd. All Rights Reserved</p>
     </footer>
+     <!-- Up Button -->
+    <button id="upButton" title="맨 위로">
+        <svg viewBox="0 0 24 24">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
   </main>
+  <script src="js/projectA.js"></script>
 </body>
-<script>
-  /* 1. DOM 요소 선언 */
-  const mainHeader = document.getElementById('main-header');
-  const stickyHeader = document.getElementById('sticky-header');
-  const slides = document.querySelectorAll('.slide');
-  const dots = document.querySelectorAll('.dot');
-  const popupOverlay = document.getElementById('popupOverlay');
-
-  /* 2. 팝업 함수 */
-  function togglePopup(show) {
-    if (popupOverlay) {
-      popupOverlay.style.display = show ? "flex" : "none";
-    }
-  }
-
-  /* 3. 슬라이더 로직 */
-  let currentSlide = 0;
-  const slideInterval = 7000; /* 7초 자동 슬라이드 */
-  let autoPlay;
-
-  function updateSlide(index) {
-    // 현재 슬라이드 비활성화
-    slides[currentSlide].classList.remove('active');
-    dots[currentSlide].classList.remove('active');
-
-    // 새 인덱스 계산 (순환 처리)
-    if (index >= slides.length) currentSlide = 0;
-    else if (index < 0) currentSlide = slides.length - 1;
-    else currentSlide = index;
-
-    // 새 슬라이드 활성화
-    slides[currentSlide].classList.add('active');
-    dots[currentSlide].classList.add('active');
-  }
-
-  function changeSlide(direction) {
-    clearInterval(autoPlay);
-    updateSlide(currentSlide + direction);
-    startAutoPlay();
-  }
-
-  function startAutoPlay() {
-    autoPlay = setInterval(() => {
-      updateSlide(currentSlide + 1);
-    }, slideInterval);
-  }
-
-  // 초기 시작
-  startAutoPlay();
-
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', (e) => {
-      e.stopPropagation(); // 반반 클릭 영역 이벤트와 충돌 방지
-      clearInterval(autoPlay);
-      updateSlide(index);
-      startAutoPlay();
-    });
-  });
-
-  /* 4. 통합 스크롤 이벤트 */
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-
-    if (scrollY > 150) {
-      if (stickyHeader) stickyHeader.classList.add('active');
-      if (mainHeader) {
-        mainHeader.style.opacity = '0';
-        mainHeader.style.pointerEvents = 'none';
-      }
-    } else {
-      if (stickyHeader) stickyHeader.classList.remove('active');
-      if (mainHeader) {
-        mainHeader.style.opacity = '1';
-        mainHeader.style.pointerEvents = 'auto';
-      }
-    }
-  });
-
-  // 초기 로드 시 체크
-  window.addEventListener('DOMContentLoaded', () => {
-    if (window.scrollY > 150) {
-      if (stickyHeader) stickyHeader.classList.add('active');
-      if (mainHeader) mainHeader.style.opacity = '0';
-    }
-  });
-</script>
-
-</script>
-
 </html>

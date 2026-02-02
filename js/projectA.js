@@ -1,179 +1,174 @@
-// Smooth scroll behavior
-document.documentElement.style.scrollBehavior = "smooth";
+// ==============================================================
+// 프로젝트 A - 통합 및 최적화된 JavaScript 파일
+// 작성자: [shin]
+// projectA.js - 통합 및 최적화된 스크립트
+// ==============================================================
 
-// Header scroll behavior
-const header = document.querySelector(".header");
-const initialHeaderBg = "white";
-const scrollHeaderBg = "rgba(255, 255, 255, 0.95)";
+window.onload = function() {
+  // 1. 초기화 및 요소 선택
+  const mainHeader = document.getElementById('main-header');
+  const stickyHeader = document.getElementById('sticky-header');
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot, .carousel-dots .dot'); // 두 가지 클래스 모두 대응
+  const upButton = document.getElementById('upButton');
+  const popupOverlay = document.getElementById('popupOverlay');
+  const scrollIndicator = document.querySelector(".scroll-indicator");
+  
+  let currentSlide = 0;
+  const slideInterval = 7000;
+  let autoPlay;
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 50) {
-    header.style.backgroundColor = scrollHeaderBg;
-    header.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.1)";
-  } else {
-    header.style.backgroundColor = initialHeaderBg;
-    header.style.boxShadow = "none";
+  // 2. 팝업 제어 (글로벌 노출을 위해 window 객체에 할당)
+  window.togglePopup = function(show) {
+    if (popupOverlay) {
+      popupOverlay.style.display = show ? "flex" : "none";
+    }
+  };
+
+  // 3. 슬라이더 & 카루셀 로직
+  function updateSlide(index) {
+    if (slides.length === 0) return;
+
+    // 활성 클래스 제거
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+
+    // 인덱스 순환
+    if (index >= slides.length) currentSlide = 0;
+    else if (index < 0) currentSlide = slides.length - 1;
+    else currentSlide = index;
+
+    // 새 슬라이드 활성화
+    slides[currentSlide].classList.add('active');
+    if (dots[currentSlide]) dots[currentSlide].classList.add('active');
   }
-});
 
-// Menu button click handler
-const menuButton = document.querySelector(".menu-button");
-if (menuButton) {
-  menuButton.addEventListener("click", () => {
-    // 메뉴 열기 로직 추가 가능
-    console.log("Menu clicked");
-  });
-}
+  window.changeSlide = function(direction) {
+    stopAutoPlay();
+    updateSlide(currentSlide + direction);
+    startAutoPlay();
+  };
 
-// Carousel dots functionality
-const dots = document.querySelectorAll(".carousel-dots .dot");
-let currentDot = 0;
+  function startAutoPlay() {
+    autoPlay = setInterval(() => {
+      updateSlide(currentSlide + 1);
+    }, slideInterval);
+  }
 
-function updateDot(index) {
-  dots.forEach((dot, i) => {
-    dot.classList.toggle("active", i === index);
-  });
-}
+  function stopAutoPlay() {
+    clearInterval(autoPlay);
+  }
 
-dots.forEach((dot, index) => {
-  dot.addEventListener("click", () => {
-    currentDot = index;
-    updateDot(currentDot);
-  });
-});
-
-// Auto advance carousel dots
-setInterval(() => {
-  currentDot = (currentDot + 1) % dots.length;
-  updateDot(currentDot);
-}, 5000);
-
-// Scroll indicator fade out
-const scrollIndicator = document.querySelector(".scroll-indicator");
-if (scrollIndicator) {
-  window.addEventListener("scroll", () => {
-    const opacity = Math.max(0, 1 - window.scrollY / 500);
-    scrollIndicator.style.opacity = opacity;
-  });
-}
-
-// Portfolio items hover effect
-const portfolioItems = document.querySelectorAll(".portfolio-item");
-portfolioItems.forEach((item) => {
-  item.addEventListener("mouseenter", function () {
-    this.style.opacity = "0.8";
+  // 도트 클릭 이벤트 바인딩
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', (e) => {
+      e.stopPropagation();
+      stopAutoPlay();
+      updateSlide(index);
+      startAutoPlay();
+    });
   });
 
-  item.addEventListener("mouseleave", function () {
-    this.style.opacity = "1";
-  });
-});
+  // 초기 실행
+  startAutoPlay();
 
-// See more links click handlers
-const seeMoreLinks = document.querySelectorAll(".see-more-link");
-seeMoreLinks.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    // 클릭 시 동작 추가 가능
-    console.log("See more clicked");
-  });
+  // 4. 스크롤 통합 관리
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
 
-  link.addEventListener("mouseenter", function () {
-    this.style.opacity = "0.7";
-  });
+    // 헤더 상태 변경 (Main vs Sticky)
+    if (scrollY > 150) {
+      if (stickyHeader) stickyHeader.classList.add('active');
+      if (mainHeader) {
+        mainHeader.style.opacity = '0';
+        mainHeader.style.pointerEvents = 'none';
+      }
+    } else {
+      if (stickyHeader) stickyHeader.classList.remove('active');
+      if (mainHeader) {
+        mainHeader.style.opacity = '1';
+        mainHeader.style.pointerEvents = 'auto';
+      }
+    }
 
-  link.addEventListener("mouseleave", function () {
-    this.style.opacity = "1";
-  });
-});
+    // Up 버튼 표시
+    if (upButton) {
+      if (scrollY > 300) upButton.classList.add('show');
+      else upButton.classList.remove('show');
+    }
 
-// Intersection Observer for fade-in animations
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: "0px 0px -50px 0px",
-};
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = "1";
-      entry.target.style.transform = "translateY(0)";
+    // 스크롤 인디케이터 투명도 조절
+    if (scrollIndicator) {
+      const opacity = Math.max(0, 1 - scrollY / 500);
+      scrollIndicator.style.opacity = opacity;
     }
   });
-}, observerOptions);
 
-// Apply observer to sections
-const sections = document.querySelectorAll(
-  ".content-section, .portfolio-section",
-);
-sections.forEach((section) => {
-  section.style.opacity = "0";
-  section.style.transform = "translateY(20px)";
-  section.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-  observer.observe(section);
-});
+  // 5. 인터랙션 요소 (Hover & Click)
+  
+  // 포트폴리오 아이템 호버
+  document.querySelectorAll(".portfolio-item").forEach((item) => {
+    item.addEventListener("mouseenter", () => item.style.opacity = "0.8");
+    item.addEventListener("mouseleave", () => item.style.opacity = "1");
+  });
 
-// Keyboard navigation
-document.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowDown") {
-    window.scrollBy({
-      top: window.innerHeight,
-      behavior: "smooth",
+  // 서비스 아이템 애니메이션
+  document.querySelectorAll(".service-item").forEach((item) => {
+    item.style.transition = "all 0.3s ease";
+    item.addEventListener("mouseenter", () => item.style.transform = "translateY(-5px)");
+    item.addEventListener("mouseleave", () => item.style.transform = "translateY(0)");
+  });
+
+  // 브랜드 아이템 스케일
+  document.querySelectorAll(".brand-item").forEach((item) => {
+    item.style.cursor = "pointer";
+    item.style.transition = "transform 0.3s ease";
+    item.addEventListener("mouseenter", () => item.style.transform = "scale(1.05)");
+    item.addEventListener("mouseleave", () => item.style.transform = "scale(1)");
+    item.addEventListener("click", () => console.log("Brand clicked"));
+  });
+
+  // 6. Intersection Observer (Fade-in 애니메이션)
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+        observer.unobserve(entry.target); // 한 번 나타나면 감시 종료
+      }
     });
-  } else if (e.key === "ArrowUp") {
-    window.scrollBy({
-      top: -window.innerHeight,
-      behavior: "smooth",
-    });
-  }
-});
+  }, observerOptions);
 
-// Service items click handlers
-const serviceItems = document.querySelectorAll(".service-item");
-serviceItems.forEach((item) => {
-  item.addEventListener("mouseenter", function () {
-    this.style.transform = "translateY(-5px)";
-    this.style.transition = "all 0.3s ease";
+  document.querySelectorAll(".content-section, .portfolio-section").forEach((section) => {
+    section.style.opacity = "0";
+    section.style.transform = "translateY(20px)";
+    section.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+    observer.observe(section);
   });
 
-  item.addEventListener("mouseleave", function () {
-    this.style.transform = "translateY(0)";
+  // Up 버튼 클릭 이벤트
+      if (upButton) {
+        upButton.onclick = () => {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth" // 브라우저 네이티브 부드러운 스크롤 사용
+          });
+        };
+      }
+
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown") {
+      window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
+    } else if (e.key === "ArrowUp") {
+      window.scrollBy({ top: -window.innerHeight, behavior: "smooth" });
+    }
   });
-});
 
-// Brand grid items click handlers
-const brandItems = document.querySelectorAll(".brand-item");
-brandItems.forEach((item) => {
-  item.addEventListener("click", () => {
-    console.log("Brand item clicked");
-  });
-
-  item.style.cursor = "pointer";
-  item.addEventListener("mouseenter", function () {
-    this.style.transform = "scale(1.05)";
-    this.style.transition = "transform 0.3s ease";
-  });
-
-  item.addEventListener("mouseleave", function () {
-    this.style.transform = "scale(1)";
-  });
-});
-
-// Page load animation
-window.addEventListener("load", () => {
-  document.body.style.opacity = "1";
-});
-
-// Prevent context menu on portfolio items (optional)
-portfolioItems.forEach((item) => {
-  item.addEventListener("contextmenu", (e) => {
-    // e.preventDefault(); // 원하면 활성화
-  });
-});
-
-console.log("Script loaded successfully");
-/* ===================================================================== */
-/* ===========================팝          업============================ */
-/* ===================================================================== */
-
-
+  console.log("GROVE: Script successfully optimized and loaded.");
+};
