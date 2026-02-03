@@ -13,7 +13,6 @@
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR",
     sans-serif;
-  /* --sticky-bg: rgba(255, 255, 255, 0.95); */
 }
 
 html,
@@ -28,7 +27,6 @@ body {
   line-height: 1.6;
 }
 
-/* Header */
 /* 공통 헤더 스타일 */
 .header {
   position: fixed;
@@ -66,7 +64,6 @@ body {
 .header-sticky {
   position: fixed;
   background-color: #ffffff;
-  /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); */
   border-bottom: 1px solid rgb(36, 36, 36);
   /* 초기 상태: 위로 숨김 */
   transform: translateY(-100%);
@@ -637,7 +634,7 @@ main {
   color: var(--secondary-color);
 }
 
-/* 공통 섹션 구조 */
+/* common sections 구조 */
 .content-section.dark1 .content-section.dark2 {
   border-top: 1px solid var(--secondary-color);
   overflow: hidden;
@@ -677,8 +674,6 @@ main {
 
 /* 이미지 크기 최적화 및 그림자 효과 (Modern UI) */
 .col-right2 img {
-  /* max-width: 100%; */
-  /* height: auto; */
   border-radius: 12px;
   box-shadow:
     0 10px 25px -5px rgba(0, 0, 0, 0.1),
@@ -1064,8 +1059,6 @@ main {
   text-transform: uppercase;
 }
 
-
-
 .marquee-section2 {
   background-color: var(--secondary-color);
   color: var(--primary-color);
@@ -1125,7 +1118,6 @@ main {
   transition: var(--transition);
   text-decoration: none;
   color: inherit;
-  /* [중요] 기존 border-right 속성을 제거해야 선이 끊어집니다. */
   border: none;
 }
 /* [핵심] 우측 수직 보더 선: 위아래 40px씩 띄워서 끊기 */
@@ -1148,7 +1140,7 @@ main {
 .portfolio-img-box {
   width: 315px;
   height: 368px;
-  aspect-ratio: 1 / 1.1;
+  aspect-ratio: 1 / 1.2;
   /* 약간 세로로 긴 느낌의 grovesoft 비율 */
   overflow: hidden;
   margin-bottom: 30px;
@@ -1215,19 +1207,16 @@ main {
   left: 0;
   height: 1px;
   background-color: var(--border-color);
-  /* width를 조절하여 선의 길이를 변경하세요 */
+  /* width 선 조절 */
   width: 100%;
   transition: width 0.3s ease;
-  /* 변경 시 부드러운 효과 */
 }
 
 /* 가운데 수직선 추가 */
 .border-vertical-center {
   position: absolute;
   top: 80px;
-  /* 패딩 높이와 맞춤 */
   bottom: 60px;
-  /* 하단 여백과 맞춤 */
   left: 50%;
   width: 1px;
   background-color: var(--border-color);
@@ -1236,9 +1225,7 @@ main {
 
 .contact-info {
   display: flex;
-  /* 가로 배치 활성화 */
   gap: 60px;
-  /* 좌우 그룹 사이 간격 */
   width: 100%;
   align-items: flex-start;
 }
@@ -1311,19 +1298,12 @@ main {
 .popup-top-line {
   position: absolute;
   top: 20px;
-  /* 위에서부터의 거리 */
   left: 50%;
-  /* 중앙 정렬 시작 */
   transform: translateX(-50%);
-  /* 정확한 중앙 맞춤 */
   width: 160px;
-  /* 선의 길이 */
   height: 2px;
-  /* 선의 두께 */
   background-color: rgba(255, 255, 255, 0.675);
-  /* 선의 색상 */
   border-radius: 1px;
-  /* 선 끝을 약간 둥글게 */
 }
 
 /* 텍스트 스타일 */
@@ -1364,27 +1344,27 @@ main {
 /* Up button */
 #upButton {
   position: fixed;
-      bottom: 40px;
-      right: 40px;
-      width: 56px;
-      height: 56px;
-      /* 배경색을 약간 더 어둡게 조정하여 밝은 배경 대비 확보 */
-      background-color: rgba(0, 0, 0, 0.7); 
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      opacity: 0;
-      visibility: hidden;
-      transition: var(--transition);
-      z-index: 1000;
-      backdrop-filter: blur(10px);
-      /* 그림자를 추가하여 모든 배경에서 입체감과 가독성 부여 */
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-      outline: none;
+  bottom: 40px;
+  right: 40px;
+  width: 56px;
+  height: 56px;
+  /* 배경색을 약간 더 어둡게 조정하여 밝은 배경 대비 확보 */
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  /* 그림자를 추가하여 모든 배경에서 입체감과 가독성 부여 */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  outline: none;
 }
 
 #upButton.show {
@@ -1424,70 +1404,70 @@ main {
   overflow: hidden;
 }
 /* 반응형 디자인 */
-  @media (max-width: 1024px) {
-            .section-grid {
-                grid-template-columns: 1fr;
-            }
+@media (max-width: 1024px) {
+  .section-grid {
+    grid-template-columns: 1fr;
+  }
 
-            .col-left,
-            .col-right {
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
-                padding: 40px;
-            }
+  .col-left,
+  .col-right {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 40px;
+  }
 
-            .portfolio-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-            .portfolio-item.featured {
-                grid-column: 1 / -1;
-            }
+  .portfolio-item.featured {
+    grid-column: 1 / -1;
+  }
 
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
 
-            .service-item.full-height {
-                grid-template-columns: 1fr;
-            }
-        }
+  .service-item.full-height {
+    grid-template-columns: 1fr;
+  }
+}
 
-        @media (max-width: 768px) {
-            .header-content {
-                padding: 0 24px;
-            }
+@media (max-width: 768px) {
+  .header-content {
+    padding: 0 24px;
+  }
 
-            .hero-text {
-                left: 50%;
-                transform: translateX(-50%);
-                width: 90%;
-            }
+  .hero-text {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+  }
 
-            .hero-text h1 {
-                font-size: 48px;
-                line-height: 60px;
-            }
+  .hero-text h1 {
+    font-size: 48px;
+    line-height: 60px;
+  }
 
-            .col-left,
-            .col-right {
-                padding: 40px 24px;
-            }
+  .col-left,
+  .col-right {
+    padding: 40px 24px;
+  }
 
-            .content-text h2 {
-                font-size: 32px;
-                line-height: 40px;
-            }
+  .content-text h2 {
+    font-size: 32px;
+    line-height: 40px;
+  }
 
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
 
-            .marquee {
-                font-size: 32px;
-            }
+  .marquee {
+    font-size: 32px;
+  }
 
-            .footer {
-                padding-left: 24px;
-            }
-        }
+  .footer {
+    padding-left: 24px;
+  }
+}
