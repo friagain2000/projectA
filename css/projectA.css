@@ -987,6 +987,7 @@ main {
 .brand-logo {
   height: 310px;
   width: auto;
+  padding-left: 80px;
 }
 
 /* Services Grid */
@@ -1042,21 +1043,35 @@ main {
 /* Marquee Section */
 .marquee-section1 {
   background-color: #ffffff;
-  color: #000000;
-  padding: 70px 0;
+  padding: 30px 0;
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
   overflow: hidden;
-  white-space: nowrap;
+  display: flex;
+}
+/* 사진 한 장의 크기와 간격 설정 */
+.marquee img {
+  height: 80px; 
+  width: auto; 
+  display: block;
+  padding-right: 0px;
 }
 
 .marquee {
-  display: inline-block;
-  animation: scroll 30s linear infinite;
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  display: flex;
+  width: max-content;
+  animation: scroll var(--slider-speed) linear infinite;
+  animation: scroll-left 30s linear infinite;
+}
+/* marquee ani */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .marquee-section2 {
@@ -1077,7 +1092,7 @@ main {
   line-height: 60px;
   animation: scroll-left 20s linear infinite;
 }
-
+/* marquee2 ani */
 @keyframes scroll-left {
   0% {
     transform: translateX(0);
@@ -1341,6 +1356,20 @@ main {
 .popup button:hover {
   background-color: #ddd;
 }
+
+/* pop up ani */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
 /* Up button */
 #upButton {
   position: fixed;
@@ -1379,24 +1408,13 @@ main {
 
 #upButton svg {
   width: 20px;
+  
   height: 20px;
   fill: none;
   stroke: currentColor;
   stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /* 스크롤 제어용 */
