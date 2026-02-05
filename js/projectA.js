@@ -1,8 +1,5 @@
-// ==============================================================
-// 프로젝트 A - 통합 및 최적화된 JavaScript 파일
-// 작성자: [shin]
-// projectA.js - 통합 및 최적화된 스크립트
-// ==============================================================
+
+<<<<<<< HEAD
 
 window.onload = function () {
   // 1. 초기화 및 요소 선택
@@ -14,6 +11,18 @@ window.onload = function () {
   const popupOverlay = document.getElementById("popupOverlay");
   const scrollIndicator = document.querySelector(".scroll-indicator");
 
+=======
+window.onload = function () {
+  // 1. 초기화 및 요소 선택
+  const mainHeader = document.getElementById("main-header");
+  const stickyHeader = document.getElementById("sticky-header");
+  const slides = document.querySelectorAll(".slide");
+  const dots = document.querySelectorAll(".dot, .carousel-dots .dot"); // 두 가지 클래스 모두 대응
+  const upButton = document.getElementById("upButton");
+  const popupOverlay = document.getElementById("popupOverlay");
+  const scrollIndicator = document.querySelector(".scroll-indicator");
+
+>>>>>>> c61072d (반응형)
   let currentSlide = 0;
   const slideInterval = 7000;
   let autoPlay;
