@@ -55,9 +55,8 @@ body {
   position: fixed;
   background-color: transparent;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  transition:
-    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.6s ease;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
+  color: #ffffff; 
 }
 
 /* 2. 스티키 헤더 (스크롤 시 등장) */
@@ -70,6 +69,7 @@ body {
   opacity: 0;
   visibility: hidden;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  
 }
 
 /* 스크롤 시 활성화 클래스 */
@@ -84,20 +84,25 @@ body {
   height: 28px;
   width: auto;
   fill: currentColor;
+  overflow: visible;
+  display: flex;
+  align-items: center;
 }
 
+
+/* 로고 스타일링 (제공된 코드 참고) */
+.logo-container {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
 .logo-text {
+  font-size: 28px;
   font-family: "Cormorant Garamond", serif;
   font-weight: bold;
-  letter-spacing: 0.02em;
-}
-
-.header-main .logo-svg {
-  color: #ffffff;
-}
-
-.header-sticky .logo-svg {
-  color: #000000;
+  letter-spacing: 0.33em;
+  text-transform: uppercase;
 }
 
 /* 스티키 헤더의 로고는 검은색으로 반전 */
@@ -169,43 +174,68 @@ main {
 .slide.active {
   opacity: 1;
 }
-
-.slide-content h1 {
-  transform: translateY(30px);
-  opacity: 0;
-  transition: all 0.8s ease 0.5s;
+/* 텍스트 내 구분선(hr) 스타일 정의 */
+.slide h1 hr {
+  border: none;
+  margin: 10px 0;
 }
 
-.slide.active .slide-content h1 {
-  transform: translateY(0);
-  opacity: 1;
+/* 비디오 배경을 위한 추가 스타일 */
+.slide-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: -1;
 }
+/* --- 커스텀 커서 스타일 --- */
+        #custom-cursor, #custom-cursor-outer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: difference;
+            opacity: 0;
+            transition: transform 0.2s ease-out, opacity 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
 
-/* 슬라이드별 배경 설정 */
-.slide:nth-child(1) {
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2072");
-}
+        #custom-cursor {
+            width: 8px;
+            height: 8px;
+            background-color: #fff;
+            border-radius: 50%;
+            z-index: 10001;
+        }
 
-.slide:nth-child(2) {
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=2070");
-}
+        #custom-cursor-outer {
+            width: 32px;
+            height: 32px;
+            border: 1.5px solid #fff;
+            border-radius: 50%;
+        }
 
-.slide:nth-child(3) {
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2015");
-}
+        .cursor-visible #custom-cursor,
+        .cursor-visible #custom-cursor-outer {
+            opacity: 1;
+        }
 
-.slide:nth-child(4) {
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url(/project_images/slideimage4.jpg);
-}
+        .hide-custom-cursor #custom-cursor,
+        .hide-custom-cursor #custom-cursor-outer {
+            opacity: 0;
+            visibility: hidden;
+        }
 
+        /* 호버 시 확대 효과 */
+        .cursor-hover #custom-cursor { transform: translate(-50%, -50%) scale(1.5); }
+        .cursor-hover #custom-cursor-outer { 
+            transform: translate(-50%, -50%) scale(1.6);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
 /* 화면 분할 클릭 영역 추가 */
 .click-areas {
   position: absolute;
@@ -279,259 +309,7 @@ main {
   justify-content: center;
 }
 
-/* Mobile Styles - Figma Design */
-.mobile-container {
-  width: 390px;
-  margin: 0 auto;
-  background: white;
-}
-
-.mobile-hero {
-  height: 780px;
-  background: #cfcfcf;
-  position: relative;
-  overflow: hidden;
-}
-
-.mobile-hero-text {
-  position: absolute;
-  left: 30px;
-  top: 349px;
-  font-family: "Noto Sans KR", sans-serif;
-  font-size: 49px;
-  font-weight: 700;
-  color: #f1f1f1;
-  line-height: 82px;
-}
-
-.mobile-bullets {
-  position: absolute;
-  bottom: 6.41%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 111px;
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  justify-content: center;
-}
-
-.bullet {
-  width: 8px;
-  height: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.36);
-  border-radius: 4px;
-}
-
-.bullet.active {
-  width: 24px;
-  height: 24px;
-  border-radius: 12px;
-  position: relative;
-  border: none;
-}
-
-.bullet.active::after {
-  content: "";
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: white;
-  border-radius: 3px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.mobile-section-black {
-  background: black;
-  padding: 45px 20px;
-}
-
-.mobile-heading {
-  font-family: "Noto Sans KR", sans-serif;
-  font-size: 30px;
-  font-weight: 700;
-  color: white;
-  line-height: 35.7px;
-  letter-spacing: -1px;
-}
-
-.mobile-see-more {
-  font-family: "Poppins", sans-serif;
-  font-size: 30px;
-  font-weight: 500;
-  color: white;
-  background: linear-gradient(
-    to top,
-    white 9.302%,
-    rgba(255, 255, 255, 0) 9.302%
-  );
-  line-height: 35.7px;
-  display: inline-block;
-  margin-top: 27px;
-}
-
-.mobile-project-card {
-  text-align: center;
-  padding: 40px 0;
-  border-left: 1px solid #505050;
-}
-
-.mobile-project-card:first-child {
-  border-left: none;
-}
-
-.mobile-project-image {
-  width: 150px;
-  height: 308px;
-  margin: 0 auto;
-}
-
-.mobile-project-title {
-  font-family: "Poppins", sans-serif;
-  font-size: 22px;
-  font-weight: 500;
-  color: white;
-  margin-top: 22px;
-}
-
-.mobile-project-category {
-  font-family: "Poppins", sans-serif;
-  font-size: 17px;
-  color: white;
-  margin-top: 10px;
-}
-
-.mobile-project-client {
-  font-family: "Poppins", sans-serif;
-  font-size: 17px;
-  color: white;
-  margin-top: 15px;
-}
-
-.mobile-tech-section {
-  padding: 40px 20px;
-  border-top: 1px solid black;
-}
-
-.mobile-tech-text {
-  font-family: "Noto Sans KR", sans-serif;
-  font-size: 30px;
-  font-weight: 700;
-  color: black;
-  line-height: 35.7px;
-  letter-spacing: -1px;
-  margin-top: 40px;
-}
-
-.mobile-tech-desc {
-  font-family: "Noto Sans KR", sans-serif;
-  font-size: 17px;
-  font-weight: 350;
-  color: #3d3d3d;
-  line-height: 28.05px;
-  letter-spacing: -1px;
-  margin-top: 45px;
-}
-
-.mobile-arrow-link {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 35px;
-}
-
-.mobile-arrow-link span {
-  font-family: "DM Sans", sans-serif;
-  font-size: 17px;
-  color: black;
-}
-
-.mobile-service-section {
-  border-top: 1px solid black;
-  padding: 40px 20px;
-}
-
-.mobile-service-title {
-  font-family: "Poppins", sans-serif;
-  font-size: 22px;
-  font-weight: 600;
-  color: black;
-  margin-bottom: 30px;
-}
-
-.mobile-service-list {
-  font-family: "Noto Sans KR", sans-serif;
-  font-size: 17px;
-  font-weight: 350;
-  color: #3d3d3d;
-  line-height: 34px;
-  letter-spacing: -1px;
-}
-
-.mobile-contact-section {
-  background: black;
-  border-top: 1px solid #505050;
-  padding: 30px 20px;
-}
-
-.mobile-contact-info {
-  font-family: "Poppins", sans-serif;
-  font-size: 22px;
-  font-weight: 500;
-  color: white;
-  line-height: 27.94px;
-}
-
-.mobile-footer {
-  background: black;
-  padding: 20px;
-  text-align: center;
-}
-
-.mobile-footer-text {
-  font-family: "Roboto", sans-serif;
-  font-size: 17px;
-  color: #7a7a7a;
-  line-height: 28.05px;
-}
-
-.mobile-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 70px;
-  background: white;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-}
-
-.mobile-logo {
-  width: 129.41px;
-  height: 44px;
-}
-
-.mobile-menu-grid {
-  width: 22px;
-  height: 22px;
-  display: grid;
-  grid-template-columns: repeat(4, 4px);
-  grid-template-rows: repeat(4, 4px);
-  gap: 2px;
-}
-
-.mobile-menu-grid span {
-  width: 4px;
-  height: 4px;
-  background: black;
-  border-radius: 2px;
-}
-
+/* Hero Section */
 .hero-image {
   width: 100%;
   height: 100%;
@@ -552,7 +330,7 @@ main {
 
 .hero-text {
   position: absolute;
-  left: 545px;
+  left: 10%;
   top: 50%;
   transform: translateY(-50%);
   width: 830px;
@@ -1051,16 +829,36 @@ main {
 }
 /* 사진 한 장의 크기와 간격 설정 */
 .marquee img {
-  height: 80px; 
-  width: auto; 
+  height: 80px;
+  width: auto;
   display: block;
   padding-right: 0px;
 }
-
+.marquee-section2 {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  overflow: hidden;
+  padding: 30px 0;
+  border-top: 1px solid var(--primary-color);
+  border-bottom: 1px solid var(--primary-color);
+}
+.marquee span {
+  display: inline-block;
+  padding-right: 20px;
+}
 .marquee {
   display: flex;
   width: max-content;
   animation: scroll var(--slider-speed) linear infinite;
+  animation: scroll-left 20s linear infinite;
+}
+.marquee2 {
+  display: flex;
+  white-space: nowrap;
+  font-size: 50px;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  line-height: 60px;
   animation: scroll-left 30s linear infinite;
 }
 /* marquee ani */
@@ -1073,41 +871,6 @@ main {
     transform: translateX(-50%);
   }
 }
-
-.marquee-section2 {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-  overflow: hidden;
-  padding: 30px 0;
-  border-top: 1px solid var(--primary-color);
-  border-bottom: 1px solid var(--primary-color);
-}
-
-.marquee2 {
-  display: flex;
-  white-space: nowrap;
-  font-size: 50px;
-  font-weight: 500;
-  font-family: "Poppins", sans-serif;
-  line-height: 60px;
-  animation: scroll-left 20s linear infinite;
-}
-/* marquee2 ani */
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.marquee span {
-  display: inline-block;
-  padding-right: 20px;
-}
-
 /* Portfolio Section */
 .portfolio-section {
   background-color: var(--primary-color);
@@ -1135,6 +898,7 @@ main {
   color: inherit;
   border: none;
 }
+
 /* [핵심] 우측 수직 보더 선: 위아래 40px씩 띄워서 끊기 */
 .portfolio-item::after {
   content: "";
@@ -1153,12 +917,9 @@ main {
 
 /* 이미지 영역: 상단 배치 */
 .portfolio-img-box {
-  width: 315px;
-  height: 368px;
-  aspect-ratio: 1 / 1.2;
-  /* 약간 세로로 긴 느낌의 grovesoft 비율 */
-  overflow: hidden;
-  margin-bottom: 30px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
 }
 
 .portfolio-item img {
@@ -1358,17 +1119,17 @@ main {
 }
 
 /* pop up ani */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-  
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 /* Up button */
 #upButton {
@@ -1408,7 +1169,7 @@ main {
 
 #upButton svg {
   width: 20px;
-  
+
   height: 20px;
   fill: none;
   stroke: currentColor;
@@ -1422,70 +1183,149 @@ main {
   overflow: hidden;
 }
 /* 반응형 디자인 */
-@media (max-width: 1024px) {
-  .section-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .col-left,
-  .col-right {
-    border-right: none;
-    border-bottom: 1px solid var(--border-color);
-    padding: 40px;
-  }
-
-  .portfolio-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .portfolio-item.featured {
-    grid-column: 1 / -1;
-  }
-
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .service-item.full-height {
-    grid-template-columns: 1fr;
-  }
+/* 1. 대형 데스크탑 (Max: 1674px) */
+@media (max-width: 1674px) {
+    .header-content {
+        padding: 0 40px;
+    }
+    .hero-text {
+        left: 5%;
+        width: 70%;
+    }
+    .hero-text h1 {
+        font-size: 70px;
+        line-height: 1.2;
+    }
+    .col-left1, .col-left2, .col-left3, .col-left4, .col-left5,
+    .col-right1, .col-right2, .col-right3, .col-right4, .col-right5 {
+        padding: 0 40px;
+    }
+    .content-text h2 {
+        font-size: 40px;
+    }
 }
 
+/* 2. 중형 노트북 (1201px ~ 1594px) - 추가된 구간 */
+@media (max-width: 1594px) and (min-width: 1201px) {
+    .header-content {
+        padding: 0 32px;
+    }
+    .hero-text h1 {
+        font-size: 64px;
+    }
+    .section-grid {
+        gap: 20px;
+    }
+    .col-left1, .col-left2, .col-left3, .col-left4, .col-left5,
+    .col-right1, .col-right2, .col-right3, .col-right4, .col-right5 {
+        padding: 0 32px;
+    }
+    .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr); /* 4열에서 3열로 조정 */
+    }
+}
+
+/* 3. 일반 노트북 및 대형 태블릿 (Max: 1200px) */
+@media (max-width: 1200px) {
+    .section-grid {
+        grid-template-columns: 1fr; /* 2열 구조를 1열로 변경 */
+    }
+    .col-left1::after, .col-left2::after, .col-left2::before, .border-vertical-center {
+        display: none; /* 중앙 수직 구분선 제거 */
+    }
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr); /* 4열에서 2열로 */
+    }
+    .brand-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .hero-text h1 {
+        font-size: 60px;
+        line-height: 1.1;
+    }
+    .service-item.full-height {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+/* 4. 태블릿 및 모바일 가로 (Max: 768px) */
 @media (max-width: 768px) {
-  .header-content {
-    padding: 0 24px;
-  }
+    .header {
+        height: 60px;
+    }
+    .header-content {
+        padding: 0 24px;
+    }
+    .logo-text {
+        font-size: 22px;
+    }
+    .hero-text {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        text-align: center;
+    }
+    .hero-text h1 {
+        font-size: 48px;
+        line-height: 60px;
+    }
+    .divider {
+        display: none;
+    }
+    .col-left1, .col-left2, .col-left3, .col-left4, .col-left5,
+    .col-right1, .col-right2, .col-right3, .col-right4, .col-right5 {
+        padding: 40px 24px;
+        min-height: auto;
+    }
+    .content-text h2 {
+        font-size: 32px;
+        line-height: 40px;
+    }
+    .portfolio-grid {
+        grid-template-columns: 1fr; /* 모바일에서 1열 */
+    }
+    .portfolio-item {
+        padding: 24px;
+    }
+    .portfolio-item::after {
+        display: none; /* 포트폴리오 사이 선 제거 */
+    }
+    .marquee2 {
+        font-size: 32px;
+    }
+    .contact-info {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .footer {
+        padding-left: 24px;
+        font-size: 14px;
+    }
+    #upButton {
+        bottom: 20px;
+        right: 20px;
+        width: 48px;
+        height: 48px;
+    }
+}
 
-  .hero-text {
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-  }
-
-  .hero-text h1 {
-    font-size: 48px;
-    line-height: 60px;
-  }
-
-  .col-left,
-  .col-right {
-    padding: 40px 24px;
-  }
-
-  .content-text h2 {
-    font-size: 32px;
-    line-height: 40px;
-  }
-
-  .portfolio-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .marquee {
-    font-size: 32px;
-  }
-
-  .footer {
-    padding-left: 24px;
-  }
+/* 5. 스마트폰 가로 및 소형 기기 (Max: 480px) */
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 36px;
+        line-height: 1.2;
+    }
+    .popup {
+        width: 90%;
+        height: auto;
+        padding: 30px 20px;
+    }
+    .brand-item img {
+        width: 120px;
+    }
+    .content-text h2 {
+        font-size: 28px;
+    }
 }
