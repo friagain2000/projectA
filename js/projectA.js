@@ -1,6 +1,4 @@
 
-<<<<<<< HEAD
-
 window.onload = function () {
   // 1. 초기화 및 요소 선택
   const mainHeader = document.getElementById("main-header");
@@ -11,18 +9,6 @@ window.onload = function () {
   const popupOverlay = document.getElementById("popupOverlay");
   const scrollIndicator = document.querySelector(".scroll-indicator");
 
-=======
-window.onload = function () {
-  // 1. 초기화 및 요소 선택
-  const mainHeader = document.getElementById("main-header");
-  const stickyHeader = document.getElementById("sticky-header");
-  const slides = document.querySelectorAll(".slide");
-  const dots = document.querySelectorAll(".dot, .carousel-dots .dot"); // 두 가지 클래스 모두 대응
-  const upButton = document.getElementById("upButton");
-  const popupOverlay = document.getElementById("popupOverlay");
-  const scrollIndicator = document.querySelector(".scroll-indicator");
-
->>>>>>> c61072d (반응형)
   let currentSlide = 0;
   const slideInterval = 7000;
   let autoPlay;
@@ -184,10 +170,12 @@ window.onload = function () {
 
   // Up 버튼 클릭 이벤트
   if (upButton) {
-    upButton.onclick = () => {
+    upButton.onclick = (e) => {
+      e.preventDefault();
       window.scrollTo({
         top: 0,
-        behavior: "smooth", // 브라우저 네이티브 부드러운 스크롤 사용
+        left: 0,
+        behavior: "smooth"
       });
     };
   }
