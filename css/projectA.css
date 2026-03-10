@@ -833,11 +833,7 @@ main {
   display: flex;
   width: max-content;
   animation: scroll var(--slider-speed) linear infinite;
-<<<<<<< HEAD
-  animation: scroll-left 30s linear infinite;
-=======
   animation: scroll-left 35s linear infinite;
->>>>>>> 4bd2dfe (Update)
 }
 
 .marquee2 {
